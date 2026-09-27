@@ -23,3 +23,8 @@ def sepia(img):
 
 
     return np.clip(result,0,255).astype(np.uint8)
+
+def brightness(img, value):
+    bright = img.astype(np.int16) + value
+
+    return np.clip(bright, 0, 255).astype(np.uint8)

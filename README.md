@@ -4,27 +4,24 @@ A simple CLI image processing tool built with Python, NumPy, and Pillow.
 
 ## Features
 
-* RGB to grayscale and Sepia conversion
+* Grayscale
+* Sepia
 * Brightness adjustment
+* Contrast adjustment
 * Image inversion
 * NumPy-based pixel manipulation
 * Image loading and saving
 
 ## How It Works
 
-RGB images are represented as NumPy arrays:
+Images are represented as NumPy arrays:
 
 ```text
-(height, width, 3)
+RGB  → (height, width, 3)
+RGBA → (height, width, 4)
 ```
 
-where the three channels represent Red, Green, and Blue.
-
-RGBA images contain an additional Alpha channel:
-
-```text
-(height, width, 4)
-```
+The channels represent Red, Green, Blue, and optionally Alpha.
 
 ### Grayscale
 
@@ -42,12 +39,22 @@ sepia_b = 0.272R + 0.534G + 0.131B
 
 ### Brightness
 
-A value is added to each pixel and limited to the valid `0-255` range.
+Adds or subtracts a value from pixel intensities and keeps them within the `0–255` range.
+
+### Contrast
+
+Adjusts pixel values around the midpoint `128`:
+
+```text
+new_pixel = factor × (pixel - 128) + 128
+```
 
 ### Invert
 
+Inverts RGB values:
+
 ```text
-New Pixel = 255 - Old Pixel
+new_pixel = 255 - pixel
 ```
 
 ## Setup
@@ -76,9 +83,10 @@ Place input images in `input/`. Processed images are saved to `output/`.
 
 ## Planned
 
-* Contrast
 * Blur
 * Edge detection
 * Image resizing
 * Cropping
+* Sharpening
+* Histogram processing
 * More filters

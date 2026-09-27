@@ -35,3 +35,11 @@ def invert(img):
     result[:, :, :3] = 255 - result[:, :, :3]
 
     return result
+
+def contrast(img, factor):
+
+    image = img.astype(np.float32)
+
+    image = factor * (image - 128) + 128
+
+    return np.clip(image, 0, 255).astype(np.uint8)

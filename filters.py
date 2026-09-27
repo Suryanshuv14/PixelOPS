@@ -28,3 +28,10 @@ def brightness(img, value):
     bright = img.astype(np.int16) + value
 
     return np.clip(bright, 0, 255).astype(np.uint8)
+
+def invert(img):
+    result = img.copy()
+
+    result[:, :, :3] = 255 - result[:, :, :3]
+
+    return result

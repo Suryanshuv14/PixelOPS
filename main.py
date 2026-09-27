@@ -1,6 +1,6 @@
 import numpy as np
 from PIL import Image
-from filters import grayscale, sepia, brightness    
+from filters import grayscale, sepia, brightness, invert
 
 
 image = Image.open("input/popper.png")
@@ -10,11 +10,11 @@ img = np.array(image)
 # prinht(img.shape)
 # print(img.dtype)
 # print(img[0, 0])
-
 print("Choose any One:")
 print("Sepia - 1")
 print("Grayscale - 2")
 print("Brightness - 3")
+print("Invert - 4")
 
 choice = input()
 
@@ -39,6 +39,13 @@ elif choice == "3":
 
     bright_image = Image.fromarray(bright)
     bright_image.save("output/export.png")
+
+elif choice == "4":
+
+    invert_img = invert(img)
+
+    invert_image = Image.fromarray(invert_img)
+    invert_image.save("output/export.png")
 
 else:
     print("Invalid choice")
